@@ -10,4 +10,8 @@ if github.branch_for_base == "production"
   if !git.diff_for_file("Versionfile")
     fail 'You did not update the Versionfile.'
   end
+
+  if !git.diff_for_file("CHANGELOG.md")
+    fail 'You did not update the CHANGELOG.md file'
+  end
 end
