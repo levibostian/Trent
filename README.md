@@ -1,8 +1,8 @@
 [![Gem](https://img.shields.io/gem/v/formatador.svg)](https://rubygems.org/gems/trent)
-[![Travis (.com)](https://img.shields.io/travis/com/USER/REPO.svg)](https://travis-ci.com/levibostian/Trent)
+[![Travis (.com)](https://travis-ci.com/levibostian/Trent.svg?branch=development)](https://travis-ci.com/levibostian/Trent)
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/levibostian/trent)
 
-# Trent 
+# Trent
 
 Run and debug bash commands on Travis-CI much easier.
 
@@ -38,6 +38,10 @@ This makes it difficult to debug when things go wrong. Knowing what commands wer
 
 ```
 $> bundle add trent
+
+or...
+
+$> gem install trent 
 ```
 
 * Create a new Ruby file for the scripts you want to run and create an instance of `Trent`. 
@@ -83,6 +87,9 @@ Let's break this down.
 ```ruby
 # Allow a command to fail and not fail the Travis build. 
 ci.sh("false", :fail_non_success => false) 
+
+# Perform a string replace on your commands where "docker-compose" will be replaced with "/opt/bin/docker-compose"
+ci.path("docker-compose", "/opt/bin/docker-compose")
 ```
 
 # Run remote SSH shell commmands
@@ -168,8 +175,8 @@ Trent is open for pull requests. Check out the [list of issues](https://github.c
 ### Building Trent 
 
 ```
-$> gem build trent.gemspec
-$> gem install --dev ./trent-X.X.X.gem
+$> bundle install --path vendor/bundle
+$> bundle exec rake init 
 ```
 
 This will install all dependencies including for development. You are ready to write some code. 
@@ -177,14 +184,13 @@ This will install all dependencies including for development. You are ready to w
 While working on Trent, make sure to lint it:
 
 ```
-$> rubocop  --auto-correct 
+$> bundle exec rake lint 
 ```
 
 To test out Trent on your machine:
 
 ```
-$> gem build trent.gemspec
-$> gem install ./trent-X.X.X.gem
+$> bundle exec rake build
 ```
 
 Then, you can use it on your own machine using `require 'trent'` in your ruby scripts. 

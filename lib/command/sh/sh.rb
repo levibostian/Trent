@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'open3'
 
 # Run bash commands locally on machine.

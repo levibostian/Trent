@@ -1,6 +1,8 @@
+version = File.read("Versionfile")
+
 Gem::Specification.new do |s|
   s.name        = 'trent'
-  s.version     = '0.1.0'
+  s.version     = version
   s.date        = '2018-08-07'
   s.summary     = 'Run and debug bash commands on Travis-CI much easier.'
   s.description = 'I have been using Travis-CI for a few years to build, test, and deploy my apps. Bash is great, but using a higher level language for interacting with Travis and the build machine would be very beneficial. 
@@ -15,4 +17,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'colorize', ['= 0.8.1']
   s.add_runtime_dependency 'net-ssh', ['= 5.0.2']
   s.add_development_dependency 'rubocop', ['= 0.58.2']
+  s.add_development_dependency 'rake', ['= 12.3.1']
 end
