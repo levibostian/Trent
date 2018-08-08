@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../lib/trent'
+require 'trent'
 
 ci = Trent.new
 ci.config_github(ENV['DANGER_GITHUB_API_TOKEN'])

@@ -2,6 +2,7 @@ sudo: false
 language: ruby
 rvm:
   - "2.4"
+before_install: gem install bundler  
 install:
   - bundle install --path vendor/bundle
 cache:
@@ -19,7 +20,7 @@ jobs:
       script: bundle exec rake build   
     - stage: prod-release
       name: "Release"
-      script: bundle exec rake install && ruby ./bin/gem-release.rb
+      script: bundle exec rake install && bundle install && ruby ./bin/gem-release.rb
 
 stages:
   - name: danger
