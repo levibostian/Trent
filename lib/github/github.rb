@@ -21,6 +21,8 @@ class GitHub
     end
   end
 
+  private
+
   def comment_on_pull_request(message)
     puts "Commenting on GitHub pull request: #{ENV['TRAVIS_REPO_SLUG']}/#{ENV['TRAVIS_PULL_REQUEST']}"
     uri = URI("https://api.github.com/repos/#{ENV['TRAVIS_REPO_SLUG']}/issues/#{ENV['TRAVIS_PULL_REQUEST']}/comments")

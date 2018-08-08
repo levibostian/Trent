@@ -1,3 +1,7 @@
+[![Gem](https://img.shields.io/gem/v/formatador.svg)](https://rubygems.org/gems/trent)
+[![Travis (.com)](https://img.shields.io/travis/com/USER/REPO.svg)](https://travis-ci.com/levibostian/Trent)
+[![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/levibostian/trent)
+
 # Trent 
 
 Run and debug bash commands on Travis-CI much easier.
@@ -136,6 +140,10 @@ ci.config_github('wfoweifwoeifjweoijwefowefweoif')
 
 ci.github.comment("Tests pass!") # Send comment to pull request for the Travis build. The pull request information is automatically retrieved from the Travis virtual machine the build is running on. 
 ```
+
+# Docs
+
+Trent documentation is hosted [here](https://www.rubydoc.info/gems/trent/0.1.0). 
 
 # Advanced Trent configuration 
 
