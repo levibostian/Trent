@@ -1,0 +1,30 @@
+sudo: false
+language: ruby
+rvm:
+  - "2.4"
+install:
+  - bundle install --path vendor/bundle
+cache:
+  directories:
+    - vendor/bundle
+jobs:
+  include:
+    - stage: danger
+      name: "Danger"
+      script: bundle exec danger --fail-on-errors=true
+    - stage: lint-tests
+      name: "Lint & tests"
+      script: bundle exec rake lint
+    - # Lint & tests
+      script: bundle exec rake build   
+    - stage: prod-release
+      name: "Release"
+      script: bundle exec rake build && ruby ./bin/gem-release.rb
+
+stages:
+  - name: danger
+    if: type IN (pull_request)
+  - name: lint-tests
+    if: branch = development AND type IN (pull_request)
+  - name: prod-release
+    if: branch = production AND type IN (pull_request)

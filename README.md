@@ -38,6 +38,10 @@ This makes it difficult to debug when things go wrong. Knowing what commands wer
 
 ```
 $> bundle add trent
+
+or...
+
+$> gem install trent 
 ```
 
 * Create a new Ruby file for the scripts you want to run and create an instance of `Trent`. 
@@ -168,8 +172,8 @@ Trent is open for pull requests. Check out the [list of issues](https://github.c
 ### Building Trent 
 
 ```
-$> gem build trent.gemspec
-$> gem install --dev ./trent-X.X.X.gem
+$> bundle install --path vendor/bundle
+$> bundle exec rake init 
 ```
 
 This will install all dependencies including for development. You are ready to write some code. 
@@ -177,14 +181,13 @@ This will install all dependencies including for development. You are ready to w
 While working on Trent, make sure to lint it:
 
 ```
-$> rubocop  --auto-correct 
+$> bundle exec rake lint 
 ```
 
 To test out Trent on your machine:
 
 ```
-$> gem build trent.gemspec
-$> gem install ./trent-X.X.X.gem
+$> bundle exec rake build
 ```
 
 Then, you can use it on your own machine using `require 'trent'` in your ruby scripts. 
