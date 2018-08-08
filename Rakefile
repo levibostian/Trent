@@ -14,7 +14,11 @@ end
 task :build do
   sh 'rm trent-*.gem || true'
   sh 'gem build trent.gemspec'
-  sh 'bundle install --path vendor/bundle'
+end
+
+task :install do
+  Rake::Task[:build].invoke
+  sh 'gem install trent*.gem'
 end
 
 task :publish do
