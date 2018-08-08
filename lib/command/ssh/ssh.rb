@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'net/ssh'
 
 # Run SSH commands remotely on a server.

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'command/ssh/ssh'
 require 'github/github'
 require 'command/sh/sh'
