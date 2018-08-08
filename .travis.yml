@@ -3,7 +3,7 @@ language: ruby
 rvm:
   - "2.4"
 install:
-  - bundle install --path vendor/bundle
+  - bundle install
 cache:
   directories:
     - vendor/bundle
