@@ -1,8 +1,8 @@
 [![Gem](https://img.shields.io/gem/v/formatador.svg)](https://rubygems.org/gems/trent)
-[![Travis (.com)](https://img.shields.io/travis/com/levibostian/trent.svg)](https://travis-ci.com/levibostian/Trent)
+[![Travis (.com)](https://img.shields.io/travis/com/levibostian/trent.svg)](https://travis-ci.com/levibostian/Trent.svg?branch=development)
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/levibostian/trent)
 
-# Trent 
+# Trent
 
 Run and debug bash commands on Travis-CI much easier.
 
