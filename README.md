@@ -87,6 +87,9 @@ Let's break this down.
 ```ruby
 # Allow a command to fail and not fail the Travis build. 
 ci.sh("false", :fail_non_success => false) 
+
+# Perform a string replace on your commands where "docker-compose" will be replaced with "/opt/bin/docker-compose"
+ci.path("docker-compose", "/opt/bin/docker-compose")
 ```
 
 # Run remote SSH shell commmands

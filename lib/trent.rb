@@ -5,6 +5,7 @@ require 'github/github'
 require 'command/sh/sh'
 require 'colorize'
 require_relative './log'
+require 'command/command'
 
 # Communicate with all of the Trent library with this class.
 class Trent
@@ -13,6 +14,8 @@ class Trent
 
     @color = color
     @sh = Sh.new
+
+    @paths = {}
   end
 
   # Configure how to run remote SSH commmands on server.
@@ -25,8 +28,18 @@ class Trent
     @github = GitHub.new(api_key)
   end
 
+  # While working with bash commands, some commands are not added to the path. That's annoying.
+  # Convenient method to assign a command to a path for replacing.
+  # Example:
+  # ci.path("docker-compose", "/opt/bin/docker-compose")
+  # Now, when you use ci.sh("docker-compose -f ... up -d"), it will run "/opt/bin/docker-compose -f ... up -d" instead.
+  def path(command, path)
+    @paths[command] = path
+  end
+
   ## Run ssh command
   def ssh(command, fail_non_success = true)
+    command = Command.path_replace(command, @paths)
     Log.fatal('You did not configure SSH yet.') unless @ssh
 
     puts command.colorize(@color)
@@ -39,6 +52,7 @@ class Trent
 
   # Run local bash command
   def sh(command, fail_non_success = true)
+    command = Command.path_replace(command, @paths)
     puts command.colorize(@color)
 
     result = @sh.run(command)
