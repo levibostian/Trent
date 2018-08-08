@@ -1,5 +1,5 @@
 [![Gem](https://img.shields.io/gem/v/formatador.svg)](https://rubygems.org/gems/trent)
-[![Travis (.com)](https://img.shields.io/travis/com/USER/REPO.svg)](https://travis-ci.com/levibostian/Trent)
+[![Travis (.com)](https://img.shields.io/travis/com/levibostian/trent.svg)](https://travis-ci.com/levibostian/Trent)
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/levibostian/trent)
 
 # Trent 
