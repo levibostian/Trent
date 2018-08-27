@@ -12,7 +12,9 @@ class GitHub
 
   # Comment on Pull Request
   def comment(message)
-    unless ENV['TRAVIS_PULL_REQUEST']
+    # https://docs.travis-ci.com/user/environment-variables/#convenience-variables
+    # Must check if 'false' because `TRAVIS_PULL_REQUEST` always has a value.
+    if ENV['TRAVIS_PULL_REQUEST'].to_s == 'false'
       Log.warning("Not in pull request, skipping GitHub comment. Message: #{message}")
       return
     end
