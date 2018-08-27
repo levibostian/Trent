@@ -1,3 +1,11 @@
+### [0.2.1] 2018-08-27
+
+### Fixed 
+- `sh()` and `ssh()` did not actually use the `fail_non_success` parameter. There was a bug in the code that ended up ignoring the parameter. 
+
+### Changed 
+- When attempting to comment on a GitHub pull request and you're not on a pull request, Trent will log a warning to the console with the comment message. 
+
 ### [0.2.0] 2018-08-08
 
 Add `path` function to Trent to perform string replacing in your commands for you. 
