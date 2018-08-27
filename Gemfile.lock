@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    trent (0.2.0)
+    trent (0.2.1)
       colorize (= 0.8.1)
       net-ssh (= 5.0.2)
 

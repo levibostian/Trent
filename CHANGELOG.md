@@ -1,3 +1,8 @@
+### [0.2.2] 2018-08-27
+
+### Fixed 
+- Commenting on a GitHub pull request checks the value of `TRAVIS_PULL_REQUEST`, as there is always a value. 
+
 ### [0.2.1] 2018-08-27
 
 ### Fixed 
