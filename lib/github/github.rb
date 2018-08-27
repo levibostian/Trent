@@ -12,6 +12,11 @@ class GitHub
 
   # Comment on Pull Request
   def comment(message)
+    unless ENV['TRAVIS_PULL_REQUEST']
+      Log.warning("Not in pull request, skipping GitHub comment. Message: #{message}")
+      return
+    end
+
     result = comment_on_pull_request(message)
 
     if !result[:successful]

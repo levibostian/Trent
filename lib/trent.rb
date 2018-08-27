@@ -38,32 +38,25 @@ class Trent
   end
 
   ## Run ssh command
-  def ssh(command, fail_non_success = true)
+  def ssh(command, fail_non_success: true)
     command = Command.path_replace(command, @paths)
     Log.fatal('You did not configure SSH yet.') unless @ssh
 
     puts command.colorize(@color)
     result = @ssh.run(command)
 
-    Log.fatal('Command failed with a non 0 exit status.') if !result[:result] && fail_non_success
+    process_shell_result(result, fail_non_success)
 
     result
   end
 
   # Run local bash command
-  def sh(command, fail_non_success = true)
+  def sh(command, fail_non_success: true)
     command = Command.path_replace(command, @paths)
     puts command.colorize(@color)
 
     result = @sh.run(command)
-
-    unless result[:result]
-      if fail_non_success
-        Log.fatal('Command failed with a non 0 exit status.')
-      else
-        Log.warning('Command failed with a non 0 exit status.')
-      end
-    end
+    process_shell_result(result, fail_non_success)
 
     result
   end
@@ -72,5 +65,17 @@ class Trent
   def github
     Log.fatal('You did not configure GitHub yet.') unless @github
     @github
+  end
+
+  private
+
+  def process_shell_result(result, fail_non_success)
+    return if result[:result]
+
+    if fail_non_success
+      Log.fatal('Command failed with a non 0 exit status.')
+    else
+      Log.warning('Command failed with a non 0 exit status.')
+    end
   end
 end
