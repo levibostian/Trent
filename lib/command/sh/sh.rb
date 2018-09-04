@@ -10,8 +10,7 @@ class Sh
   def run(command)
     output = ''
     exit_status = nil
-    Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
-      stdin.close
+    Open3.popen3(command) do |_stdin, stdout, stderr, wait_thr|
       stdout.each_line do |line|
         puts line
         output += line

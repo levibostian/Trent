@@ -1,3 +1,8 @@
+### [0.2.3] 2018-09-04
+
+### Fixed 
+- Running `sh()` commands did not allow sending anything into STDIN. 
+
 ### [0.2.2] 2018-08-27
 
 ### Fixed 
