@@ -1,9 +1,10 @@
 version = File.read("Versionfile")
+require 'date'
 
 Gem::Specification.new do |s|
   s.name        = 'trent'
   s.version     = version
-  s.date        = '2018-08-07'
+  s.date        = Date.today.to_s
   s.summary     = 'Run and debug bash commands on Travis-CI much easier.'
   s.description = 'I have been using Travis-CI for a few years to build, test, and deploy my apps. Bash is great, but using a higher level language for interacting with Travis and the build machine would be very beneficial. 
 
