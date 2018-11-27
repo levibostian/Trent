@@ -7,11 +7,16 @@ task :init do
   Rake::Task[:build].invoke
 end
 
+task :spec do 
+  sh 'bundle exec rspec'
+end 
+
 task :lint do
   sh 'bundle exec rubocop  --auto-correct -c .rubocop.yml'
 end
 
 task :build do
+  Rake::Task[:spec].invoke
   sh 'rm trent-*.gem || true'
   sh 'gem build trent.gemspec'
 end

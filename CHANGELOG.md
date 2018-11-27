@@ -1,3 +1,8 @@
+### [0.3.0] 2018-11-27
+
+### Added
+- Allow Trent to run locally. Use Trent to run scripts locally on your own machine if you wish. 
+
 ### [0.2.3] 2018-09-04
 
 ### Fixed 
