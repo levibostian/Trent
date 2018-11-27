@@ -1,3 +1,8 @@
+# Manually installed 
+test-results/
+
+######################################
+
 *.gem
 *.rbc
 /.config

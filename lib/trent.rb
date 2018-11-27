@@ -9,10 +9,14 @@ require 'command/command'
 
 # Communicate with all of the Trent library with this class.
 class Trent
-  def initialize(color = :blue)
-    Log.fatal('Trent is designed to run on Travis-CI builds. Run it on Travis-CI.') unless ENV['HAS_JOSH_K_SEAL_OF_APPROVAL']
+  # Initialize Trent instance.
+  # color - Color of shell output you want Trent to use.
+  # local - Run Trent locally on your own machine instead of a CI server. 
+  def initialize(params = {})      
+    running_local = params.fetch(:local, false)
+    Log.fatal('Trent is designed to run on Travis-CI builds. Run it on Travis-CI.') unless ENV['HAS_JOSH_K_SEAL_OF_APPROVAL'] || running_local
 
-    @color = color
+    @color = params.fetch(:color, :blue)
     @sh = Sh.new
 
     @paths = {}

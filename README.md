@@ -157,7 +157,7 @@ Trent documentation is hosted [here](https://www.rubydoc.info/gems/trent/0.1.0).
 ```ruby
 # Set the color Trent uses to print the command about to run to the console. 
 # Available colors are located here: https://github.com/fazibear/colorize/blob/master/lib/colorize/class_methods.rb#L61
-ci = Trent.new(:green)
+ci = Trent.new(:color => :green)
 ```
 
 ## Author
@@ -187,7 +187,7 @@ While working on Trent, make sure to lint it:
 $> bundle exec rake lint 
 ```
 
-To test out Trent on your machine:
+To run tests and build Trent on your machine:
 
 ```
 $> bundle exec rake build
