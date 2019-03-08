@@ -7,9 +7,9 @@ task :init do
   Rake::Task[:build].invoke
 end
 
-task :spec do 
+task :spec do
   sh 'bundle exec rspec'
-end 
+end
 
 task :lint do
   sh 'bundle exec rubocop  --auto-correct -c .rubocop.yml'

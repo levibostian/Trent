@@ -2,6 +2,7 @@
 
 require 'command/ssh/ssh'
 require 'github/github'
+require 'travis/travis'
 require 'command/sh/sh'
 require 'colorize'
 require_relative './log'
@@ -11,10 +12,10 @@ require 'command/command'
 class Trent
   # Initialize Trent instance.
   # color - Color of shell output you want Trent to use.
-  # local - Run Trent locally on your own machine instead of a CI server. 
-  def initialize(params = {})      
+  # local - Run Trent locally on your own machine instead of a CI server.
+  def initialize(params = {})
     running_local = params.fetch(:local, false)
-    Log.fatal('Trent is designed to run on Travis-CI builds. Run it on Travis-CI.') unless ENV['HAS_JOSH_K_SEAL_OF_APPROVAL'] || running_local
+    Log.fatal('Trent is designed to run on Travis-CI builds. Run it on Travis-CI.') unless TravisCI.running_on_travis? || running_local
 
     @color = params.fetch(:color, :blue)
     @sh = Sh.new
@@ -30,6 +31,11 @@ class Trent
   # Configure how to communicate with GitHub
   def config_github(api_key)
     @github = GitHub.new(api_key)
+  end
+
+  # Configure how to communicate with Travis
+  def config_travis(api_key, private_repo)
+    @travis = TravisCI.new(api_key: api_key, private_repo: private_repo)
   end
 
   # While working with bash commands, some commands are not added to the path. That's annoying.
@@ -63,6 +69,12 @@ class Trent
     process_shell_result(result, fail_non_success)
 
     result
+  end
+
+  # Get instance of GitHub class to run commands against GitHub
+  def travis
+    Log.fatal('You did not configure Travis yet.') unless @travis
+    @travis
   end
 
   # Get instance of GitHub class to run commands against GitHub
