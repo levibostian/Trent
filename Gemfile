@@ -6,3 +6,4 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'danger', '~> 5.6'
+gem 'travis', '~> 1.8.2'
