@@ -4,7 +4,7 @@
 
 # Trent
 
-Run and debug bash commands on Travis-CI much easier.
+Run and debug bash commands on Travis-CI much easier. Make writing commands to run on your CI not painful. 
 
 ...Yes, Trent is open to working with more then Travis-CI. At this time, Travis is what I use so it's what's supported. Make a pull request to add more. 
 
@@ -148,6 +148,34 @@ ci.config_github('wfoweifwoeifjweoijwefowefweoif')
 ci.github.comment("Tests pass!") # Send comment to pull request for the Travis build. The pull request information is automatically retrieved from the Travis virtual machine the build is running on. 
 ```
 
+# Travis 
+
+Trent comes with some handy commands that allow you to work with Travis, itself, easily. Here are some things you can do with it: 
+
+### Skip rest of Trent commands if previous branch build failed and on a pull request 
+
+When I am working on a project and I get it done, I tend to push up my branch to GitHub and then make a pull request right away to indicate it is complete. 
+
+The problem is, if my branch build fails, the pull request build on Travis will still happen (and most likely fail if configured similar to my push commands). I would rather have Travis skip running some commands on a pull request build if the previous branch build failed. 
+
+```ruby
+require 'trent'
+
+ci = Trent.new()
+# Set Travis CI API key to authenticate user account. 
+# Log into travis-ci.com or travis-ci.org (depending on where your repo is located), and browse to your profile page: https://travis-ci.com/account/preferences Copy the API key shown. 
+# I like to store this API key in an environment variable. 
+# Also indicate if this is a private repo or not. 
+ci.config_travis(:api_key => ENV["TRAVIS_API_KEY"], :private_repo => true)
+
+if TravisCI.pull_request? && ci.travis.branch_build_successful?
+  # Do something if we are in a pull request and the most recent branch build was successful. 
+end 
+
+# Or, fail is Trent figures out we are in a pull request and the most recent branch build was not successful. 
+ci.travis.fail_if_pr_branch_build_failed()
+```
+
 # Docs
 
 Trent documentation is hosted [here](https://www.rubydoc.info/gems/trent/0.1.0). 
@@ -169,6 +197,8 @@ ci = Trent.new(:color => :green)
 ## Contribute
 
 Trent is open for pull requests. Check out the [list of issues](https://github.com/levibostian/trent/issues) for tasks I am planning on working on. Check them out if you wish to contribute in that way.
+
+At this time, Trent is a random collection of random tasks that I have found a use case for while working with CI servers. I see Trent being more of a core system that can run a series of plugins for you. I want to think of it as "The [Danger](https://danger.systems/) of creating scripts for CI servers" (aka: a convenience tool to help you write scripts quickly and painless with less bugs). 
 
 **Want to add features to Trent?** Before you decide to take a bunch of time and add functionality to the library, please, [create an issue](https://github.com/levibostian/trent/issues/new) stating what you wish to add. This might save you some time in case your purpose does not fit well in the use cases of Trent.
 
