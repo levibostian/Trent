@@ -1,3 +1,8 @@
+### [0.4.0] 2019-03-07
+
+### Added
+- Add small set of utility functions for Travis-CI. Specifically determining if the previous branch build for a pull request was successful or not. [Discussion](https://github.com/levibostian/Trent/issues/22)
+
 ### [0.3.0] 2018-11-27
 
 ### Added
