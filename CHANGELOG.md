@@ -1,3 +1,8 @@
+### [0.5.0] 2019-12-04
+
+### Changed 
+- **Breaking change** `config_ssh` now takes in an options hash instead of password as 3rd parameter. 
+
 ### [0.4.0] 2019-03-07
 
 ### Added

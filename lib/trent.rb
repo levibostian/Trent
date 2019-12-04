@@ -24,8 +24,8 @@ class Trent
   end
 
   # Configure how to run remote SSH commmands on server.
-  def config_ssh(username, host, password = nil)
-    @ssh = SSH.new(username, host, password: password)
+  def config_ssh(username, host, options = nil)
+    @ssh = SSH.new(username, host, options)
   end
 
   # Configure how to communicate with GitHub

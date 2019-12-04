@@ -4,15 +4,15 @@ require 'net/ssh'
 
 # Run SSH commands remotely on a server.
 class SSH
-  def initialize(username, host, password = nil)
+  def initialize(username, host, options)
     @username = username
     @host = host
-    @password = password
+    @options = options
   end
 
   # Run the SSH command on the server
   def run(command)
-    Net::SSH.start(@host, @username, password: @password) do |ssh|
+    Net::SSH.start(@host, @username, @options) do |ssh|
       output = ''
       exit_code = nil
       ssh.open_channel do |channel|
