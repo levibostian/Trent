@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'net-ssh', '~> 5.0', '>= 5.0.2'
   s.add_runtime_dependency 'travis', '~> 1.8', '>= 1.8.2'
   s.add_development_dependency 'rubocop', '~> 0.58', '>= 0.58.2'
-  s.add_development_dependency 'rake', '~> 12.3', '>= 12.3.1'
+  s.add_development_dependency 'rake', '~> 13.0', '>= 13.0.1'
   s.add_development_dependency 'rspec', '~> 3.8', '>= 3.8.0'
   s.add_development_dependency 'rspec_junit_formatter', '~> 0.4', '>= 0.4.1'
 end
