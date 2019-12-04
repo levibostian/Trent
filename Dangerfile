@@ -1,17 +1,51 @@
-if github.branch_for_base != "development" && github.pr_author != "levibostian"
-  fail "Sorry, wrong branch. Create a PR into the `development` branch instead."
-end
+# File for the Danger bot: https://danger.systems/ruby/
+# Used to inspect pull requests for us to prevent issues. 
 
-if github.branch_for_base == "production" && github.branch_for_head != "development"
-  fail "You must merge from the `development` branch into `production`."
-end
+ReleaseFile = Struct.new(:relative_file_path, :warn_or_fail, :deployment_instruction)
 
-if github.branch_for_base == "production"
-  if !git.diff_for_file("Versionfile")
-    fail 'You did not update the Versionfile.'
+files_to_update_for_releases = [
+  ReleaseFile.new('CHANGELOG.md', 'fail', "Add a new changelog entry detailing for future developers what has been done in the app."),
+  ReleaseFile.new('Versionfile', 'fail', "Edit the symantic version of the release in the Versionfile.")  
+]
+
+deployment_instructions = []
+deployment_instructions += files_to_update_for_releases.map { |release_file| "#{release_file.relative_file_path}: #{release_file.deployment_instruction}" }
+
+def determineIfRelease(files_to_update_for_releases, deployment_instructions)
+  num_files_updated = 0
+
+  files_to_update_for_releases.each { |release_file_array|
+    release_file_relative_path = release_file_array[0]
+    release_file_warn_or_fail = release_file_array[1]
+
+    if git.diff_for_file(release_file_relative_path) 
+      if num_files_updated == 0        
+        warn "🚀 I am going to assume that this *is a release* pull request because you have edited at least one file that would be updated for releases. 🚀"
+      end 
+
+      message "File: #{release_file_relative_path} edited."
+
+      num_files_updated += 1
+    else
+      if num_files_updated > 0 # We only want to actually warn or fail if you forgot a file. If this PR is not a release, don't bother. 
+        fail_message = "You did not update #{release_file_relative_path}, but you updated at least one file"
+        if release_file_warn_or_fail == 'warn'
+          warn fail_message
+        else 
+          fail fail_message
+        end 
+      end 
+    end
+  }
+end 
+
+if ENV["CI"] 
+  if github.branch_for_base == "master"
+    if !(github.pr_title + github.pr_body).include?("#hotfix")
+      determineIfRelease(files_to_update_for_releases, deployment_instructions)
+    end
   end
-
-  if !git.diff_for_file("CHANGELOG.md")
-    fail 'You did not update the CHANGELOG.md file'
-  end
-end
+else 
+  puts "It looks like you are looking for instructions on how to deploy your app, huh? Well, edit these files with these instructions: \n\n"
+  puts deployment_instructions  
+end 

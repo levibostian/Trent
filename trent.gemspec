@@ -12,8 +12,7 @@ Gem::Specification.new do |s|
   s.authors     = ['Levi Bostian']
   s.email       = 'levi.bostian@gmail.com'
   s.files       = Dir.glob('{bin,lib}/**/*') + %w[LICENSE README.md CHANGELOG.md]
-  s.homepage    =
-    'http://github.com/levibostian/trent'
+  s.homepage    = 'http://github.com/levibostian/trent'
   s.license = 'MIT'
   s.add_runtime_dependency 'colorize', '~> 0.8', '>= 0.8.1'
   s.add_runtime_dependency 'net-ssh', '~> 5.0', '>= 5.0.2'

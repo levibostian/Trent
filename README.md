@@ -92,18 +92,20 @@ ci.sh("false", :fail_non_success => false)
 ci.path("docker-compose", "/opt/bin/docker-compose")
 ```
 
-# Run remote SSH shell commmands
+# Run remote SSH shell commands
 
 ```ruby
 require 'trent'
 
 ci = Trent.new()
-ci.config_ssh('username', '111.111.234.332')
+ci.config_ssh('username', '111.111.234.332', { :port => 22 })
 
 result = ci.ssh("echo 'foo'")
 
 puts result 
 ```
+
+*Note: The 3rd parameter to `config_ssh` is a hash passed to [the options parameter of net/ssh](http://net-ssh.github.io/net-ssh/Net/SSH.html#method-c-start) to allow full customization.*
 
 When you run the script, you will see:
 
