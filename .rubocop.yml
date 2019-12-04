@@ -3,6 +3,7 @@ AllCops:
     - 'trent.gemspec'
     - 'vendor/**/*'
     - 'Dangerfile'
+    - 'bin/**/*'
 
 Metrics/LineLength:
   Max: 180
