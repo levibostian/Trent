@@ -8,6 +8,8 @@ Run and debug bash commands on Travis-CI much easier. Make writing commands to r
 
 ...Yes, Trent is open to working with more then Travis-CI. At this time, Travis is what I use so it's what's supported. Make a pull request to add more. 
 
+**Update April 2020**: The Trent project as it is today is no longer being supported. It will exist in read-only mode as it is being used in projects today. After taking some time the past few months in thinking about the original reason Trent was invented, I realized that Trent is trying to solve a problem in a difficult and risky way. I am now going back to the drawing board to invent a new solution to replace Trent. Trent has always been an experiment. I am glad that it came to be as it allowed me to think harder about my struggles with CI servers and how I can improve my experience with them. Trent tried to take that problem in a a poor way. The next project will be better. 
+
 ## What is Trent?
 
 I have been using Travis-CI for a few years to build, test, and deploy my apps. Bash is great, but using a higher level language for interacting with Travis and the build machine would be very beneficial. 
